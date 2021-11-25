@@ -1,10 +1,11 @@
+import uuid
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 products = [
-    {'id': 1, 'name': 'First Product', 'price': 12.0},
-    {'id': 2, 'name': 'second Product', 'price': 35.0},
-    {'id': 3, 'name': 'third Product', 'price': 30.0}
+    {'id': uuid.uuid4().hex, 'name': 'First Product', 'price': 12.0},
+    {'id': uuid.uuid4().hex, 'name': 'second Product', 'price': 35.0},
+    {'id': uuid.uuid4().hex, 'name': 'third Product', 'price': 30.0}
 ]
 
 
@@ -15,6 +16,7 @@ def catalog():
 
 @app.route('/products', methods=['POST'])
 def create():
+
     product = request.json
     products.append(product)
 
