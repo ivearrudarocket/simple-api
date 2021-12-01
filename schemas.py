@@ -19,3 +19,22 @@ class ProductEditSchema(Schema):
     class Meta:
         fields = ('name', 'price')
         ordered = True
+
+
+class ErrorFieldSchema(Schema):
+    field_name = fields.List(fields.String(required=True), required=True)
+
+
+class ErrorEntitySchema(Schema):
+    message = fields.String(required=True, allow_none=False)
+    errors = fields.Nested(ErrorFieldSchema, required=True)
+
+    class Meta:
+        fields = ('message', 'errors')
+        ordered = True
+
+
+class ErrorSchema(Schema):
+    message = fields.String(required=True, allow_none=False)
+
+
